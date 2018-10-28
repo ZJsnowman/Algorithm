@@ -1,6 +1,4 @@
 .idea/
-/reference
-/grokking_algorithms-reference
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
