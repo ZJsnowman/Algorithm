@@ -1,7 +1,12 @@
 from custom.node import Node
+import heapq
 
 
 class Queue:
+    """
+    数组实现队列
+    """
+
     def __init__(self, capacity):
         self.capacity = capacity
         self.items = []
@@ -57,6 +62,11 @@ class CycleQueue:
 
 
 class LinkedQueue:
+    """
+    链表实现队列
+
+    """
+
     def __init__(self):
         self.head = None
         self.tail = None
@@ -100,6 +110,18 @@ class LinkedQueue:
             print(current.item)
 
 
+class PriorityQueue:
+    def __init__(self):
+        self.items = []
+        self.index = 0
+
+    def enqueue(self, item, priority):
+        heapq.heappush(self.items, (-priority, self.index, item))
+
+    def dequeue(self):
+        return heapq.heappop(self.items)[-1]
+
+
 if __name__ == '__main__':
     # queue = Queue()
     # queue = LinkedQueue()
@@ -119,15 +141,25 @@ if __name__ == '__main__':
     # print('----------')
     # print(queue)
 
-    q = Queue(12)
-    for i in range(10):
-        q.enqueue(str(i))
-    print(q)
+    # q = Queue(12)
+    # for i in range(10):
+    #     q.enqueue(str(i))
+    # print(q)
+    #
+    # for _ in range(3):
+    #     q.dequeue()
+    # print(q)
+    #
+    # q.enqueue("7")
+    # q.enqueue("8")
+    # print(q)
 
-    for _ in range(3):
-        q.dequeue()
-    print(q)
-
-    q.enqueue("7")
-    q.enqueue("8")
-    print(q)
+    q = PriorityQueue()
+    q.enqueue('foo', 1)
+    q.enqueue('bar', 5)
+    q.enqueue('spam', 4)
+    q.enqueue('grok', 1)
+    print(q.dequeue())
+    print(q.dequeue())
+    print(q.dequeue())
+    print(q.dequeue())
